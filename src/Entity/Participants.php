@@ -19,7 +19,7 @@ class Participants implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180)
      */
     private $email;
 
@@ -34,10 +34,7 @@ class Participants implements UserInterface
      */
     private $password;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $no_participant;
+
 
     /**
      * @ORM\Column(type="string", length=30)

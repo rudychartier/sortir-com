@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ParticipantsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -70,6 +71,11 @@ class Participants implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $campus_no_campus;
+    public function __construct()
+    {
+        $this->campus_no_campus=new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {

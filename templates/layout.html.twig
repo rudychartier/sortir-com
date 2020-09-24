@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,  initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {font-family: "Lato", sans-serif}
+        .mySlides {display: none}
+    </style>
+
+
+    {% block head_css %}
+    <!-- Copy CSS from https://getbootstrap.com/docs/4.4/getting-started/introduction/#css -->
+        <link rel="stylesheet " href="{{ asset("css/app.css")}}"  >
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    {% endblock %}
+    {% block head_js %}
+    <!-- Copy JavaScript from https://getbootstrap.com/docs/4.4/getting-started/introduction/#js -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    {% endblock %}
+    <title>{% block  title %} bucket-list !!!{% endblock %}</title>
+</head>
+<body>
+<div class="container">
+    <header>
+        <img src="{{ asset('img/—Pngtree—cartoon sun smiling sun graffiti_3910270.png') }}" alt="Symfony!"/>
+        <h1>Sortir.com !!!</h1>
+        <div class="w3-top">
+            <div class="w3-bar w3-black w3-card">
+                Sortir.com
+
+                <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+
+
+                <a href="" class="w3-bar-item w3-button w3-padding-large">VILLES</a>
+                <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CAMPUS</a>
+                <a href="{{ path('home') }}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">ACCUEIL</a>
+                <a href="{{ path('profil') }}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">MON PROFIL</a>
+                <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">SE DECONNECTER</a>
+
+    </header>
+
+    {% for label, messages in app.flashes %}
+    {% for message in messages %}
+    <div class="flash flash-{{ label }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endfor %}
+    <main>
+        <div class="main">{% block main %}
+            {% endblock %}</div>
+    </main>
+    <footer>
+        @Sortir.com
+
+    </footer>
+</div>
+</body>
+</html>

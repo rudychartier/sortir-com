@@ -30,7 +30,7 @@ class UserController extends AbstractController
                              UserPasswordEncoderInterface $encoder)
     {
         $user= new Participants();
-
+        //Les entités devraient être au singulier
         $profilForm=$this->createForm(ProfilType::class,$user);
         $profilForm->handleRequest($request);
         $user->setAdministrateur(0);

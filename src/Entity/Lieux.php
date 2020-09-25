@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\LieuxRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -45,6 +46,10 @@ class Lieux
      * @ORM\OneToMany (targetEntity="App\Entity\Sorties", mappedBy="lieux")
      */
     private $sorties;
+    public function __construct()
+    {
+        $this->ville=new ArrayCollection();
+    }
 
     public function getId(): ?int
     {

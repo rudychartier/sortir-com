@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SortiesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -80,6 +81,16 @@ class Sorties
      * @ORM\ManyToOne (targetEntity="App\Entity\Participants",inversedBy="sorties")
      */
     private $participant;
+
+    public function __construct()
+    {
+        $this->lieux=new ArrayCollection();
+        $this->etat=new ArrayCollection();
+        $this->campus=new ArrayCollection();
+        $this->participant=new ArrayCollection();
+    }
+
+
 
 
     public function getId(): ?int

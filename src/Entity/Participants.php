@@ -24,7 +24,7 @@ class Participants implements UserInterface
      */
     private $email;
 
-    /**
+   /**
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -71,6 +71,8 @@ class Participants implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $campus_no_campus;
+
+
     public function __construct()
     {
         $this->campus_no_campus=new ArrayCollection();

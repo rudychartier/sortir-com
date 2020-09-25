@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Participants;
 use App\Form\ProfilType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -45,6 +46,19 @@ class UserController extends AbstractController
         }
         return $this->render('user/profil.html.twig',[
             "profilForm"=>$profilForm->createView()]);
+    }
+
+    /**
+     * @Route("/afficher_profil/{pseudo}", name="afficher_profil")
+     */
+    public function afficherProfil($pseudo){
+
+        $profilRepo= $this->getDoctrine()->getRepository(Participants::class);
+
+        $profil=$profilRepo->find($pseudo);
+
+        return $this->render("user/afficher_profil.html.twig",["profil"=>$profil]);
+
     }
 
 }

@@ -32,6 +32,9 @@ class ProfilType extends AbstractType
                 'first_options'  => ['label' => 'Password'],
                 'second_options' => ['label' => 'Repeat Password'],
             ])
+            ->add('campus',EntityType::class,['class'=>Campus::class,
+                'choice_label'=>'nom_campus']);
+
 
 
 

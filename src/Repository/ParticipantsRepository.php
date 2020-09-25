@@ -40,7 +40,7 @@ class ParticipantsRepository extends ServiceEntityRepository implements Password
     //  * @return Participants[] Returns an array of Participants objects
     //  */
     /*
-    public function findByExampleField($value)
+    public function findBy($pseudo)
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

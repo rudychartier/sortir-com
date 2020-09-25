@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+<div class="profil">
+    <h1> {{ profil.pseudo}}</h1>
+    <h5>Prénom:{{ profil.prenom }}</h5>
+    <h5>Nom:{{ profil.nom }}</h5>
+    <h5>Téléphone:{{ profil.telephone }}</h5>
+    <h5>Email:{{ profil.email }}</h5>
+    </div>
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}

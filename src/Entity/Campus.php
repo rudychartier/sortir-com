@@ -23,9 +23,16 @@ class Campus
      */
     private $nom_campus;
 
-    public function __construct()
-    {
-        $this->nom_campus=new ArrayCollection();}
+    /**
+     * @ORM\OneToMany (targetEntity="App\Entity\Participants",mappedBy="campus")
+     */
+    private $participants;
+
+    /**
+     * @ORM\OneToMany (targetEntity="App\Entity\Sorties",mappedBy="campus")
+     */
+    private $sorties;
+
 
 
 
@@ -33,6 +40,9 @@ class Campus
     {
         return $this->id;
     }
+
+
+
 
     public function getNomCampus(): ?string
     {
@@ -45,4 +55,38 @@ class Campus
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getParticipants()
+    {
+        return $this->participants;
+    }
+
+    /**
+     * @param mixed $participants
+     */
+    public function setParticipants($participants): void
+    {
+        $this->participants = $participants;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSorties()
+    {
+        return $this->sorties;
+    }
+
+    /**
+     * @param mixed $sorties
+     */
+    public function setSorties($sorties): void
+    {
+        $this->sorties = $sorties;
+    }
+
+
 }

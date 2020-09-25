@@ -21,6 +21,7 @@ class DefaultController extends AbstractController
      */
     public function Home()
     {
+
         $user= $this->getUser();
 
         return $this->render("main/home.html.twig",['user'=>$user]);

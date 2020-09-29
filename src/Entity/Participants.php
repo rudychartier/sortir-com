@@ -81,7 +81,8 @@ class Participants implements UserInterface
 
     public function __construct()
     {
-        $this->campus=new ArrayCollection();
+        $this->sorties=new ArrayCollection();
+
     }
 
     public function getId(): ?int

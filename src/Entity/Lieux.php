@@ -48,8 +48,10 @@ class Lieux
     private $sorties;
     public function __construct()
     {
-        $this->ville=new ArrayCollection();
+        $this->sorties=new ArrayCollection();
+
     }
+
 
     public function getId(): ?int
     {

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\SortiesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Collection;
 
 /**
  * @ORM\Entity(repositoryClass=SortiesRepository::class)
@@ -84,10 +85,8 @@ class Sorties
 
     public function __construct()
     {
-        $this->lieux=new ArrayCollection();
-        $this->etat=new ArrayCollection();
-        $this->campus=new ArrayCollection();
-        $this->participant=new ArrayCollection();
+        //$this->lieux=new ArrayCollection();
+        //$this->participant=new ArrayCollection();
     }
 
 
@@ -210,7 +209,7 @@ class Sorties
     /**
      * @return mixed
      */
-    public function getLieux()
+    public function getLieux(): Collection
     {
         return $this->lieux;
     }
@@ -258,7 +257,7 @@ class Sorties
     /**
      * @return mixed
      */
-    public function getParticipant()
+    public function getParticipant() : Collection
     {
         return $this->participant;
     }

@@ -33,6 +33,13 @@ class Campus
      */
     private $sorties;
 
+    public function __construct()
+    {
+        $this->sorties=new ArrayCollection();
+        $this->participants=new ArrayCollection();
+
+    }
+
 
 
 

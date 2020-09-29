@@ -48,6 +48,7 @@ class SortiesController extends AbstractController
 
         $sortie = new Sorties();
         $sortie->setOrganisateur(1);
+       // $sortie->setNbinscriptionsmax(10);
         $sortieForm = $this->createForm(SortieType::class,$sortie);
         $sortieForm->handleRequest($request);
         // set = donnees enregistrées du user

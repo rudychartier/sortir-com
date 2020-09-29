@@ -44,6 +44,11 @@ class SortieType extends AbstractType
                 'label'=> "Date du Debut d'Inscription"
             ])
 
+            ->add('nbinscriptionsmax',NumberType::class,[
+                'label'=>'Nombre de places',
+
+            ])
+
             //Creation du champ duree
             ->add('duree',NumberType::class,[
                 'label'=> "Durée"

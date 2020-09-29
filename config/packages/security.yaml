@@ -12,9 +12,10 @@ security:
                 property: email
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            pattern: ^/(_(profiler|wdt)|app.css|images|js)/
             security: false
         main:
+            pattern: ^/
             anonymous: lazy
             provider: app_user_provider
             guard:
@@ -36,5 +37,5 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
 
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, roles: ROLE_USER }
+        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/, roles: ROLE_USER }

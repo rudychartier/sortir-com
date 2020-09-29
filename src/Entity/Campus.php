@@ -23,11 +23,26 @@ class Campus
      */
     private $nom_campus;
 
+    /**
+     * @ORM\OneToMany (targetEntity="App\Entity\Participants", mappedBy="campus")
+     */
+    private $participants;
+
+    /**
+     * @ORM\OneToMany (targetEntity="App\Entity\Sorties",mappedBy="campus")
+     */
+    private $sorties;
+
     public function __construct()
     {
-        $this->nom_campus=new ArrayCollection();}
-
-
+        $this->sorties = new ArrayCollection();
+        $this->participants = new ArrayCollection();
+    }
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+        return $this->nom_campus;
+    }
 
     public function getId(): ?int
     {
@@ -44,5 +59,38 @@ class Campus
         $this->nom_campus = $nom_campus;
 
         return $this;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getParticipants()
+    {
+        return $this->participants;
+    }
+
+    /**
+     * @param mixed $participants
+     */
+    public function setParticipants($participants): void
+    {
+        $this->participants = $participants;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSorties()
+    {
+        return $this->sorties;
+    }
+
+    /**
+     * @param mixed $sorties
+     */
+    public function setSorties($sorties): void
+    {
+        $this->sorties = $sorties;
     }
 }

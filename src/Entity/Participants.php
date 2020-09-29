@@ -38,7 +38,7 @@ class Participants implements UserInterface
 
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=30,unique=true)
      */
     private $pseudo;
 
@@ -68,14 +68,22 @@ class Participants implements UserInterface
     private $actif;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Campus",inversedBy="participants")
      */
-    private $campus_no_campus;
+    private $campus;
+
+    /**
+     * @ORM\OneToMany (targetEntity="App\Entity\Sorties",mappedBy="participant")
+     */
+    private $sorties;
+
+
+
     public function __construct()
     {
-        $this->campus_no_campus=new ArrayCollection();
-    }
+        $this->sorties=new ArrayCollection();
 
+    }
 
     public function getId(): ?int
     {
@@ -239,15 +247,37 @@ class Participants implements UserInterface
         return $this;
     }
 
-    public function getCampusNoCampus(): ?int
+    /**
+     * @return mixed
+     */
+    public function getCampus()
     {
-        return $this->campus_no_campus;
+        return $this->campus;
     }
 
-    public function setCampusNoCampus(int $campus_no_campus): self
+    /**
+     * @param mixed $campus
+     */
+    public function setCampus($campus): void
     {
-        $this->campus_no_campus = $campus_no_campus;
-
-        return $this;
+        $this->campus = $campus;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSorties()
+    {
+        return $this->sorties;
+    }
+
+    /**
+     * @param mixed $sorties
+     */
+    public function setSorties($sorties): void
+    {
+        $this->sorties = $sorties;
+    }
+
+
 }

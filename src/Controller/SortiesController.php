@@ -2,24 +2,22 @@
 
 namespace App\Controller;
 
-use App\Entity\Idea;
+use App\Entity\Lieux;
 use App\Entity\Sorties;
-use App\Form\IdeaType;
+
 use App\Form\SortieType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route ("/sortie", name="sortie_")
- */
+
 
 class SortiesController extends AbstractController
 {
 
     /**
-     * @Route("/list", name="list")
+     * @Route("/list")
      */
     public function list()
     {
@@ -47,10 +45,10 @@ class SortiesController extends AbstractController
     public function add(Request $request, EntityManagerInterface $em)
     {
         //créer la sortie , traiter + sauvergarder dans la bdd
+
         $sortie = new Sorties();
-
+        $sortie->setOrganisateur(1);
         $sortieForm = $this->createForm(SortieType::class,$sortie);
-
         $sortieForm->handleRequest($request);
         // set = donnees enregistrées du user
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()){
@@ -59,7 +57,7 @@ class SortiesController extends AbstractController
             $em->flush();
 
             $this->addFlash("success", "Votre sortie est bien sauvergardée!");
-            return $this->redirectToRoute("sortie_detail", ["id" => $sortie->getId()]);
+            return $this->redirectToRoute("detail", ["id" => $sortie->getId()]);
         }
 
         // VERIFIER LE NOM DE CHEMIN SUR LEQUEL JE DOIS RENVOYER

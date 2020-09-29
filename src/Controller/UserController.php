@@ -4,7 +4,9 @@ namespace App\Controller;
 
 
 use App\Entity\Participants;
+use App\Entity\Sorties;
 use App\Form\ProfilType;
+use App\Form\SortieType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

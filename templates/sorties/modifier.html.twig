@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+<div class="profil">
+ <h1>Modifier ma sortie !</h1>
+ {{ form_start(sortieForm) }}
+ {{ form_widget(sortieForm) }}
+
+ <button type='submit' class="btn btn-primary">Enregistrer !</button> <input class="btn btn-primary" type="reset" value="Annuler">
+ {{ form_end(sortieForm)}}
+
+
+ {% endblock %}
+
+ {% block title %}
+
+{% endblock %}

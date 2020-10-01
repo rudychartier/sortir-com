@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Campus;
+use App\Entity\Sorties;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -23,7 +25,11 @@ class DefaultController extends AbstractController
     {
 
         $user= $this->getUser();
-
-        return $this->render("main/home.html.twig",['user'=>$user]);
+        $sortieRepo = $this->getDoctrine()->getRepository(Sorties::class);
+        $sorties = $sortieRepo->findAll();
+        $campusRepo = $this->getDoctrine()->getRepository(Campus::class);
+        $campus = $campusRepo->findAll();
+        return $this->render("sorties/list.html.twig",['user'=>$user,'campus'=>$campus,'sorties'=>$sorties]);
+        //return $this->redirectToRoute('sorties/list.html.twig',['user'=>$user]);
     }
 }

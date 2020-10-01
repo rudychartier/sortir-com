@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Campus;
 use App\Entity\Lieux;
 use App\Entity\Sorties;
 
 use App\Form\SortieType;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,7 +26,9 @@ class SortiesController extends AbstractController
         // recup sorties  en bdd
         $sortieRepo = $this->getDoctrine()->getRepository(Sorties::class);
         $sorties = $sortieRepo->findAll();
-        return $this->render('sorties/list.html.twig', ["sorties"=>$sorties]);
+        $campusRepo = $this->getDoctrine()->getRepository(Campus::class);
+        $campus = $campusRepo->findAll();
+        return $this->render('sorties/list.html.twig', ["sorties"=>$sorties,"campus"=>$campus]);
     }
 
     /**
@@ -77,9 +81,37 @@ class SortiesController extends AbstractController
         $em->flush();
         // VOIR SI CHEMIN EN HOME OU EN MAIN
         $this->addFlash('success', "La sortie a été supprimée!");
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('cancel');
 
     }
+    /**
+     * @Route("/modifier/{id}", name="modifier", requirements={"id":"\d+"})
+     */
+    //méthode detail qui permet d'afficher sur une page un évènement particulier enregistré en BDD
+    public function edit($id,EntityManagerInterface $em,Request $request)
+    {
+        //récupérer les sorties en base de donnée
+        $sortieRepo = $this->getDoctrine()->getRepository(Sorties::class);
+        //findAll permet de récupérer toute les sorties enregistrées.
+        $sortie = $sortieRepo->find($id);
+        $sortieForm = $this->createForm(SortieType::class,$sortie);
+        $sortieForm->handleRequest($request);
+        // set = donnees enregistrées du user
+        if ($sortieForm->isSubmitted() && $sortieForm->isValid()){
+
+            $em->persist($sortie);
+            $em->flush();
+
+            $this->addFlash("success", "Votre sortie est bien sauvergardée!");
+            return $this->redirectToRoute("detail", ["id" => $sortie->getId()]);
+        }
+
+
+        return $this->render('sorties/modifier.html.twig', [
+            "sortieForm" => $sortieForm->createView()
+        ]);
+    }
+
 
     /**
      * @Route("/cancel", name="cancel")
@@ -87,7 +119,7 @@ class SortiesController extends AbstractController
     public function cancel ()
     {
         //annuler la sortie
-        return $this->render('sorties/cancel.html.twig', [
+        return $this->render('sorties/modifier.html.twig', [
             'controller_name' => 'SortieController',
         ]);
     }

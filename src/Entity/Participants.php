@@ -72,18 +72,11 @@ class Participants implements UserInterface
      */
     private $campus;
 
-    /**
-     * @ORM\OneToMany (targetEntity="App\Entity\Sorties",mappedBy="participant")
-     */
-    private $sorties;
-
-
-
-    public function __construct()
+    public function __toString()
     {
-        $this->sorties=new ArrayCollection();
-
+        return $this->nom;
     }
+
 
     public function getId(): ?int
     {
@@ -263,21 +256,6 @@ class Participants implements UserInterface
         $this->campus = $campus;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getSorties()
-    {
-        return $this->sorties;
-    }
-
-    /**
-     * @param mixed $sorties
-     */
-    public function setSorties($sorties): void
-    {
-        $this->sorties = $sorties;
-    }
 
 
 }

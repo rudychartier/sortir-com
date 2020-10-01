@@ -1,9 +1,26 @@
 {% extends 'layout.html.twig' %}
 
 {% block main %}
+    <h2> Afficher une sortie</h2>
+
+    <div class="event"> {{ sorties.nom }} </div>
+    <div class="duree"> {{ sorties.duree }} </div>
+    <div class="descriptioninfos"> {{ sorties.descriptioninfos }}</div>
+    <div class="datedebut"> {{ sorties.datedebut|date("Y-m-d H:i:s") }} </div>
+    <div class="datecloture"> {{ sorties.datecloture|date("Y-m-d H:i:s") }} </div>
+    <div class="etatsortie"> {{ sorties.etatsortie }}</div>
+
+    <div class="Créer une sortie">
+        <a href="{{ url('home') }}" class="btn btn-primary btn-lg square" role="button">Retour à la page d'accueil ! !</a>
+    </div>
+
+
+
+
+
+
+
 
 {% endblock %}
 
-{% block title %}
-
-{% endblock %}
+{% block title %} Les sorties ! {% endblock %}

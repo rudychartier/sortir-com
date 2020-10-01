@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Sorties;
 use http\Env\Url;
 use Symfony\Component\DomCrawler\Field\TextareaFormField;
 use Symfony\Component\Form\AbstractType;
@@ -44,15 +45,7 @@ class SortieType extends AbstractType
                 'label'=> "Date du Debut d'Inscription"
             ])
 
-            ->add('nbinscriptionsmax',NumberType::class,[
-                'label'=>'Nombre de places',
 
-            ])
-
-            //Creation du champ duree
-            ->add('duree',NumberType::class,[
-                'label'=> "Durée"
-            ])
             //Creation du champ date de cloture
 
             ->add('datecloture', DateType::class, [
@@ -62,7 +55,16 @@ class SortieType extends AbstractType
                     'day' => 'Day',
                 ],
 
-                'label'=> "Date de fin"
+                'label'=> "Date de fin de l'inscription"
+            ])
+            ->add('nbinscriptionsmax',NumberType::class,[
+                'label'=>'Nombre de places',
+
+            ])
+
+            //Creation du champ duree
+            ->add('duree',NumberType::class,[
+                'label'=> "Durée en minutes"
             ])
             ->add('descriptioninfos', TextareaType::class, [
                 'label'=> 'Description de l evenement'])
@@ -80,9 +82,9 @@ class SortieType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        //Associer formulaire à la classe Evenement
+        //Associer formulaire à la classe Sortie
         $resolver->setDefaults([
-            'date_class'=>Evenement::class,
+            'date_class'=>Sorties::class,
         ]);
     }
 }

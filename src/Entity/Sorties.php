@@ -59,10 +59,6 @@ class Sorties
      */
     private $urlphoto;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $organisateur;
 
 
 
@@ -78,15 +74,23 @@ class Sorties
      * @ORM\ManyToOne (targetEntity="App\Entity\Campus",inversedBy="sorties")
      */
     private $campus;
+
     /**
-     * @ORM\ManyToOne (targetEntity="App\Entity\Participants",inversedBy="sorties")
+     * @ORM\ManyToOne(targetEntity=Participants::class)
      */
-    private $participant;
+    private $organisateur;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Participants::class)
+     */
+    private $participants;
+
 
     public function __construct()
     {
         //$this->lieux=new ArrayCollection();
         //$this->participant=new ArrayCollection();
+        $this->participants = new ArrayCollection();
     }
 
 
@@ -193,17 +197,7 @@ class Sorties
         return $this;
     }
 
-    public function getOrganisateur(): ?int
-    {
-        return $this->organisateur;
-    }
 
-    public function setOrganisateur(int $organisateur): self
-    {
-        $this->organisateur = $organisateur;
-
-        return $this;
-    }
 
 
     /**
@@ -254,20 +248,42 @@ class Sorties
         $this->campus = $campus;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getParticipant() : Collection
+    public function getOrganisateur(): ?Participants
     {
-        return $this->participant;
+        return $this->organisateur;
+    }
+
+    public function setOrganisateur(?Participants $organisateur): self
+    {
+        $this->organisateur = $organisateur;
+
+        return $this;
     }
 
     /**
-     * @param mixed $participant
+     * @return \Doctrine\Common\Collections\Collection|Participants[]
      */
-    public function setParticipant($participant): void
+    public function getParticipants(): \Doctrine\Common\Collections\Collection
     {
-        $this->participant = $participant;
+        return $this->participants;
+    }
+
+    public function addParticipant(Participants $participant): self
+    {
+        if (!$this->participants->contains($participant)) {
+            $this->participants[] = $participant;
+        }
+
+        return $this;
+    }
+
+    public function removeParticipant(Participants $participant): self
+    {
+        if ($this->participants->contains($participant)) {
+            $this->participants->removeElement($participant);
+        }
+
+        return $this;
     }
 
 

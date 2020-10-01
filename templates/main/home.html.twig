@@ -1,11 +1,9 @@
-{% extends 'layout.html.twig' %}
 
-{% block main %}
+{% extends 'layout.html.twig' %}{% block main %}
 
 
-     <a href="{{ url('add') }}" class="btn btn-primary btn-lg square" role="button">Créer une sortie !</a>
-{% endblock %}
+    <div class="Créer une sortie">
+        <a href="{{ url('add') }}" class="btn btn-primary btn-lg square" role="button">Créer une sortie !</a>
+    </div>
+{% endblock %}{% block title %} Les sorties ! {% endblock %}
 
-{% block title %}
-    Sortir.com
-{% endblock %}

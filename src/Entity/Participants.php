@@ -156,18 +156,6 @@ class Participants implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getNoParticipant(): ?int
-    {
-        return $this->no_participant;
-    }
-
-    public function setNoParticipant(int $no_participant): self
-    {
-        $this->no_participant = $no_participant;
-
-        return $this;
-    }
-
     public function getPseudo(): ?string
     {
         return $this->pseudo;

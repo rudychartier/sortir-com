@@ -51,7 +51,8 @@ class SortiesController extends AbstractController
         //créer la sortie , traiter + sauvergarder dans la bdd
 
         $sortie = new Sorties();
-        $sortie->setOrganisateur(1);
+
+       $sortie->setOrganisateur($this->getUser());
        // $sortie->setNbinscriptionsmax(10);
         $sortieForm = $this->createForm(SortieType::class,$sortie);
         $sortieForm->handleRequest($request);

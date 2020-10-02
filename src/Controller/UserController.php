@@ -38,6 +38,7 @@ class UserController extends AbstractController
         $profilForm->handleRequest($request);
         $user->setAdministrateur(0);
         $user->setActif(1);
+        //$user->setRoles(['ROLE_ADMIN']);
         if ($profilForm->isSubmitted()&& $profilForm->isValid())
         {
             $hashed=$encoder->encodePassword($user,$user->getPassword());

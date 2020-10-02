@@ -30,12 +30,12 @@
 <body>
 
     <header>
-        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
         <div class="navbar">
-            {% if is_granted('ROLE_ADMIN') %}
+            {%  if is_granted ('ROLE_ADMIN') %}
             <a href="#home">VILLES</a>
             <a href="#news">CAMPUS</a>
-            {% else %}
+            {%  endif %}
             <a href="{{ path('home') }}">ACCUEIL</a>
             <a href="{{ path('profil') }}" >CREER MON PROFIL</a>
 {#<a href="{{ path('afficher_profil',{'pseudo':profil.id}) }}" >CREER MON PROFIL</a>#}
@@ -44,12 +44,12 @@
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
-            {% endif %}
+
 
         </div>
-        {% else %}
-        <li><a href="{{ path('login') }}">Se connecter !</a>
-            {% endif %}
+
+        {#  <li><a href="{{ path('login') }}">Se connecter !</a> #}
+
 
     </header>
 
